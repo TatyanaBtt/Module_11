@@ -1,18 +1,15 @@
 import requests
 
 BASE_URL = "https://api.open-meteo.com/v1/forecast"
-# Параметры запроса для Москвы
 params = {
-    "latitude": 45.0448,  # широта Москвы
-    "longitude": 38.976,  # долгота Москвы
+    "latitude": 45.0448,  # широта Краснодара
+    "longitude": 38.976,  # долгота Краснодара
     "daily": "temperature_2m_min,temperature_2m_max,precipitation_sum,sunrise,sunset,daylight_duration",
-    # минимальная и максимальная температура, сумма осадков, время восхода и захода солнца
-    "timezone": "Europe/Moscow"  # временная зона Москвы
+    "timezone": "Europe/Moscow"
 }
 response = requests.get(BASE_URL, params=params)
 if response.status_code == 200:
     data = response.json()
-    # Поскольку индекс 0 представляет собой данные на текущий день, индекс 1 будет представлять данные на завтра
     tomorrow_temp_min = data['daily']['temperature_2m_min'][1]
     tomorrow_temp_max = data['daily']['temperature_2m_max'][1]
     tomorrow_precipitation = data['daily']['precipitation_sum'][1]
