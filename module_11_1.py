@@ -62,5 +62,3 @@ with Image.open(filename_1, 'r') as img_1:
     gray_img = img_1.convert("L")
     gray_img.show()
     gray_img.save('gray_img.png')
-    print(gray_img.size)
-
